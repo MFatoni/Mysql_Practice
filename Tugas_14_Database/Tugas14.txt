@@ -1,0 +1,21 @@
+CREATE TABLE nilai_mahasiswa (
+nim CHAR(8) PRIMARY KEY,
+nama VARCHAR(50),
+semester_1 DECIMAL(4,2),
+semester_2 DECIMAL(4,2),
+semester_3 DECIMAL(4,2) );
+
+create table ipk_mahasiswa (nama_dan_nip varchar(200), nilai_ipk decimal(4,2));
+
+delimiter //
+create trigger after_mahasiswa_insert 
+after insert on nilai_mahasiswa
+for each row
+begin
+insert into ipk_mahasiswa values(
+concat(upper(NEW.nama), ' (',round((NEW.semester_1+NEW.semester_2+NEW.semester_3)/3,2),') '),
+round((NEW.semester_1+NEW.semester_2+NEW.semester_3)/3,2)
+);
+end//
+
+delimiter ;

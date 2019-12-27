@@ -1,0 +1,30 @@
+DROP TABLE IF EXISTS nilai_mahasiswa;
+CREATE TABLE nilai_mahasiswa (
+nim CHAR(8) PRIMARY KEY,
+nama VARCHAR(50),
+semester_1 DECIMAL(4,2),
+semester_2 DECIMAL(4,2),
+semester_3 DECIMAL(4,2)
+) ENGINE = InnoDB;
+INSERT INTO nilai_mahasiswa VALUES
+('17090113', 'Riana Putria', 3.12, 2.98, 3.45),
+('17140143', 'Rudi Permana', 2.56, 3.14, 3.22),
+('17080305', 'Rina Kumala Sari', 3.45, 2.56, 3.67),
+('17140119', 'Sandri Fatmala', 2.12, 2.78, 2.56),
+('17090308', 'Christine Wijaya', 3.78, 3.23, 3.11);
+
+1. Buat view nilai_ipk yang diambil dari tabel nilai_mahasiswa. View ini terdiri dari kolom nim, nama, dan IPK. Tampilan akhir view adalah sebagai berikut
+create view nilai_ipk as select nim, nama,round((semester_1+semester_2+semester_3)/3,2) ipk from nilai_mahasiswa;
+
+2. Buat view kedua dengan nama nilai_ipk_format. Isi view ini diambil dari view nilai_ipk. Tampilan akhir view adalah sebagai berikut:
+create view nilai_ipk_format as select concat(nama, ' (',ipk,') ') 'Nama dan IPK' from nilai_ipk order by ipk desc;
+
+3. Input 1 baris baru ke dalam tabel nilai_mahasiswa, kemudian periksa isi view nilai_ipk dan nilai_ipk_format. Data baru yang diinput boleh sembarang. Pastikan isi view juga langsung terupdate dengan penambahan data ini.
+insert into nilai_mahasiswa values(17123456, 'Fatoni', 4,4,4);
+
+4. Tampilkan mahasiswa yang namanya diawali dengan huruf R. Data ini diambil dari view nilai_ipk_format. Berikut tampilan akhir yang diiginkan:
+select * from nilai_ipk_format where `Nama dan IPK` like 'R%';
+
+5. Hapus view nilai_ipk dan nilai_ipk_format.
+drop view nilai_ipk;
+drop view nilai_ipk_format;

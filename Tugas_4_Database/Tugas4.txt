@@ -1,0 +1,15 @@
+1. Buatlah database permainan 
+create database permainan;
+use permainan;
+
+2. Buatlah table sepakbola
+3. Buatlah struktur table sepakbola sebagai berikut:
+create table sepakbola (id_pemain int(11) not null primary key auto_increment,nama_pemain varchar(100) not null, usia_pemain int(2) not null, posisi_pemain varchar(50) not null);
+desc sepakbola;
+
+4. Ubah nama tabel menjadi sepakbola_indonesia
+rename table sepakbola to sepakbola_indonesia;
+
+5. Hapus table sepakbola_indonesia dan database permainan
+drop table sepakbola_indonesia;
+drop database permainan;

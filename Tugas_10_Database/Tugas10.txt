@@ -1,0 +1,10 @@
+1. Buat database importdata
+create database importdata;
+use importdata;
+
+2. Buat table buahbuahan dengan ketentuan seperti berikut:
+Terdapat kolom id_buah int(10) primary key, nama_buah varchar (50) dan varietas_buah varchar(50)
+create table buahbuahan (id_buah int(10) primary key, nama_buah varchar(50), varietas_buah varchar(50));
+
+3. Import data dari file sql ke dalam table buahbuahan: https://drive.google.com/file/d/1_lFGNXXiwakapzE44Exv-BfEXxokb8GS/view?usp=sharing
+sudo mysql -u root practice < query.sql
